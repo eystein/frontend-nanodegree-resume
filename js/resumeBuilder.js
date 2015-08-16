@@ -145,3 +145,6 @@ function locationizer(work_object) {
   return locationsArray;
 }
 console.log(locationizer(work));
+
+
+$("#main").prepend(internationalizeButton);
