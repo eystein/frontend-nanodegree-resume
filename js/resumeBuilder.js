@@ -1,3 +1,8 @@
+var formattedName = HTMLheaderName.replace("%data%", "Eystein Alnaes");
+var formattedRole = HTMLheaderRole.replace("%data%", "Front-end developer");
+
+$("#header").prepend(formattedRole).prepend(formattedName);
+
 /*
 * Four JSON objects
 *  education{}
@@ -146,5 +151,20 @@ function locationizer(work_object) {
 }
 console.log(locationizer(work));
 
+$("#main").append(internationalizeButton);
 
-$("#main").prepend(internationalizeButton);
+/* Change "sebastian thrun" into "Sebastian THRUN" */
+function inName(fullName) {
+  var names = fullName.trim().split(" "); // Turn into an array ["AlbERt", "EINstEiN"]. Trim off whitespace.
+  var firstName = names[0]; // Get the first name
+  var capitalLetter = firstName.slice(0,1); // Get the capital letter of the first name
+  var lastName = names[1]; // Get the last name
+
+  capitalLetter = capitalLetter.toUpperCase(); // Set it to uppercase
+  firstName = firstName.slice(1).toLowerCase(); // Return everything but the first letter
+  firstName = capitalLetter + firstName; // Put the firstname back together again as a string
+  lastName = lastName.toUpperCase(); // Set it to uppercase
+  newName = firstName + " " + lastName; // Put the whole name together.
+
+  return newName;
+}
