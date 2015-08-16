@@ -108,10 +108,8 @@ var bio = {
 [6.] .append contantecated to work-entry:last
 */
 
-
-
 function displayWork() {
-  for ( job in work.jobs) {                                                             /* [1.] */
+  for (var job in work.jobs) {                                                             /* [1.] */
     $("#workExperience").append(HTMLworkStart);                                         /* [2.] */
     var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer); /* [3.] */
     var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);          /* [4.] */
@@ -128,4 +126,22 @@ function displayWork() {
   }
 }
 
+displayWork();
 
+$(document).click(function(loc) {
+  var x = loc.pageX;
+  var y = loc.pageY;
+  logClicks(x,y);
+});
+
+function locationizer(work_object) {
+  var locationsArray = [];
+
+  for (var job in work_object.jobs) {
+    var newLocation = work_object.jobs[job].location;
+    locationsArray.push(newLocation);
+  }
+
+  return locationsArray;
+}
+console.log(locationizer(work));
