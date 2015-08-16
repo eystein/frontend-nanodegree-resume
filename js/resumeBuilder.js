@@ -107,29 +107,25 @@ var bio = {
 [5.] Contantates employer and title each
 [6.] .append contantecated to work-entry:last
 */
-for ( job in work.jobs) {                                                             /* [1.] */
-  $("#workExperience").append(HTMLworkStart);                                         /* [2.] */
-  var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer); /* [3.] */
-  var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);          /* [4.] */
-  var formattedLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location);
-  var formattedDates = HTMLworkDates.replace("%data%",work.jobs[job].dates);
-  var formattedDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description);
-  var formattedJob =
-    formattedEmployer +
-    formattedTitle +
-    formattedLocation +
-    formattedDates +
-    formattedDescription;                                                             /* [5.] */
-  $(".work-entry:last").append(formattedJob);                                        /* [6.] */
 
 
+
+function displayWork() {
+  for ( job in work.jobs) {                                                             /* [1.] */
+    $("#workExperience").append(HTMLworkStart);                                         /* [2.] */
+    var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer); /* [3.] */
+    var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);          /* [4.] */
+    var formattedLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location);
+    var formattedDates = HTMLworkDates.replace("%data%",work.jobs[job].dates);
+    var formattedDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description);
+    var formattedJob =
+      formattedEmployer +
+      formattedTitle +
+      formattedLocation +
+      formattedDates +
+      formattedDescription;                                                             /* [5.] */
+    $(".work-entry:last").append(formattedJob);                                        /* [6.] */
+  }
 }
 
-/*
-## Format and append work details ##
-Employer name
-Position held
-Location
-Dates worked
-Brief description of your responsibilities
-*/
+
