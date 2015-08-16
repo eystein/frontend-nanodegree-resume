@@ -46,7 +46,7 @@ var education = {
 var work = {
   "jobs" : [
     {
-      "employer" : "selfemployed",
+      "employer" : "Self-employed",
       "title" : "Freelance web consultant",
       "location" : ["Australia", "France", "Norway"],
       "dates" : "2008 - 2015",
@@ -96,3 +96,40 @@ var bio = {
   ],
   "bioPic" : "https://pbs.twimg.com/profile_images/1794315645/L1040675_400x400.JPG"
 }
+
+/*
+## For-In Loops ##
+
+[1.] Iterate over all the jobs in the work object. Variable can be anything, so I choose 'job'.
+[2.] Append a new HTMLworkStart for each one
+[3.] Format each job's employer with HTMLworkEmployer
+[4.] Format each job tiltle with HTMLworkTitle
+[5.] Contantates employer and title each
+[6.] .append contantecated to work-entry:last
+*/
+for ( job in work.jobs) {                                                             /* [1.] */
+  $("#workExperience").append(HTMLworkStart);                                         /* [2.] */
+  var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer); /* [3.] */
+  var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);          /* [4.] */
+  var formattedLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location);
+  var formattedDates = HTMLworkDates.replace("%data%",work.jobs[job].dates);
+  var formattedDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description);
+  var formattedJob =
+    formattedEmployer +
+    formattedTitle +
+    formattedLocation +
+    formattedDates +
+    formattedDescription;                                                             /* [5.] */
+  $(".work-entry:last").append(formattedJob);                                        /* [6.] */
+
+
+}
+
+/*
+## Format and append work details ##
+Employer name
+Position held
+Location
+Dates worked
+Brief description of your responsibilities
+*/
