@@ -197,3 +197,16 @@ projects.display = function() {
 projects.display();
 
 $("#mapDiv").append(googleMap);
+
+if (bio.skills.length > 0) {
+  console.log("skills");
+  $("#header").append(HTMLskillsStart);
+  var formattedSkill = HTMLskills.replace("%data%",bio.skills[0]);
+  $("#skills").append(formattedSkill);
+  formattedSkill = HTMLskills.replace("%data%",bio.skills[1]);
+  $("#skills").append(formattedSkill);
+  formattedSkill = HTMLskills.replace("%data%",bio.skills[2]);
+  $("#skills").append(formattedSkill);
+  formattedSkill = HTMLskills.replace("%data%",bio.skills[3]);
+  $("#skills").append(formattedSkill);
+}
