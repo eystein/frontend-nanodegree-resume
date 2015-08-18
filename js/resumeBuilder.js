@@ -196,4 +196,4 @@ projects.display = function() {
 
 projects.display();
 
-// $("#mapDiv").append(googleMap);
+$("#mapDiv").append(googleMap);
