@@ -113,7 +113,7 @@ var bio = {
 [6.] .append contantecated to work-entry:last
 */
 
-function displayWork() {
+work.display = function() {
   for (var job in work.jobs) {                                                             /* [1.] */
     $("#workExperience").append(HTMLworkStart);                                         /* [2.] */
     var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer); /* [3.] */
@@ -131,7 +131,7 @@ function displayWork() {
   }
 }
 
-displayWork();
+work.display();
 
 // $(document).click(function(loc) {
 //   var x = loc.pageX;
