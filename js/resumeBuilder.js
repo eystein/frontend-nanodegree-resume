@@ -12,7 +12,7 @@ $("#header").prepend(formattedRole).prepend(formattedName);
 */
 
 
-// Object with array with two objects.
+// Object with array with two objects - schools and onlineCourses
 var education = {
   "schools" : [
    {
@@ -73,13 +73,13 @@ var projects = {
       "title" : "laks.no",
       "dates" : "Aug-Nov 2015",
       "description" : "Animated website with lottery app",
-      "images" : ["https://mikespennyforyourthoughts.files.wordpress.com/2011/03/mjm09_wireframe_2.jpg", "http://www.smartz.com/s/RRTgEbfGMEKV0KDYARmaNw/turn-wireframe.jpg"]
+      "images" : ["images/197x148.gif","images/197x148.gif"]
     },
     {
       "title" : "eltekholding.no",
       "dates" : "Jun-Aug 2015",
       "description" : "One pager website with parallax and fullpage slides",
-      "images" : ["https://mikespennyforyourthoughts.files.wordpress.com/2011/03/mjm09_wireframe_2.jpg", "http://www.smartz.com/s/RRTgEbfGMEKV0KDYARmaNw/turn-wireframe.jpg"]
+      "images" : ["images/197x148.gif"]
     }
   ]
 }
@@ -133,11 +133,11 @@ function displayWork() {
 
 displayWork();
 
-$(document).click(function(loc) {
-  var x = loc.pageX;
-  var y = loc.pageY;
-  logClicks(x,y);
-});
+// $(document).click(function(loc) {
+//   var x = loc.pageX;
+//   var y = loc.pageY;
+//   logClicks(x,y);
+// });
 
 function locationizer(work_object) {
   var locationsArray = [];
@@ -149,22 +149,51 @@ function locationizer(work_object) {
 
   return locationsArray;
 }
-console.log(locationizer(work));
+// console.log(locationizer(work));
 
-$("#main").append(internationalizeButton);
+
 
 /* Change "sebastian thrun" into "Sebastian THRUN" */
-function inName(fullName) {
-  var names = fullName.trim().split(" "); // Turn into an array ["AlbERt", "EINstEiN"]. Trim off whitespace.
-  var firstName = names[0]; // Get the first name
-  var capitalLetter = firstName.slice(0,1); // Get the capital letter of the first name
-  var lastName = names[1]; // Get the last name
+function inName() {
+  /* var name = window.name; */ /* Gives comma-separated array */
+  /*  var name = bio.name;   */ /* bio.name gives space-separated array */
 
-  capitalLetter = capitalLetter.toUpperCase(); // Set it to uppercase
-  firstName = firstName.slice(1).toLowerCase(); // Return everything but the first letter
-  firstName = capitalLetter + firstName; // Put the firstname back together again as a string
-  lastName = lastName.toUpperCase(); // Set it to uppercase
-  newName = firstName + " " + lastName; // Put the whole name together.
-
-  return newName;
+  var name = bio.name.trim().split(" "); // Turn into an array ["AlbERt" "EINstEiN"]. Trim off whitespace.
+  console.log("name: " + name);
+  var firstName = name[0].slice(0,1).toUpperCase()+ name[0].slice(1).toLowerCase(); // Get and change the first name;
+  var lastName = name[1].toUpperCase(); // Get and change the last name;
+  console.log("firstName: " + firstName);
+  console.log("lastName: " + lastName);
+  var oldSpelling = $('#name').text();
+  var newSpelling = firstName + " " + lastName;
+  $('#name').text( newSpelling );
+  console.log(newSpelling);
 }
+
+$("#main").prepend(internationalizeButton);
+
+/* Encapsulate a function as a method of an object */
+/* Create "display" as a method of the "projects" object */
+projects.display = function() {
+  for (var project in projects.projects ) {
+    $("#projects").append(HTMLprojectStart);
+
+    var projectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+    $(".project-entry:last").append(projectTitle);
+    var projectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+    $(".project-entry:last").append(projectDates);
+    var projectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+    $(".project-entry:last").append(projectDescription);
+
+    if (projects.projects[project].images != 0) {
+      for (image in projects.projects[project].images) {
+        var projectImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+        $(".project-entry:last").append(projectImage);
+      }
+    }
+  }
+}
+
+projects.display();
+
+// $("#mapDiv").append(googleMap);
