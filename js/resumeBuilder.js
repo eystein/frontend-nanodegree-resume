@@ -103,22 +103,7 @@ var bio = {
 }
 
 
-bio.display = function() {
-  var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-  var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-  var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-  var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-  var formattedWelcomeMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-  var formattedContacts =
-    formattedTwitter +
-    formattedGithub +
-    formattedLocation;
-  $("#topContacts").append(formattedContacts);
-  $("#footerContacts").append(formattedContacts);
-  $("#header").append(formattedBioPic);
-  $("#header").append(formattedWelcomeMessage);
-}
-bio.display();
+
 /*
 ## For-In Loops ##
 
@@ -231,6 +216,21 @@ bio.display = function() {
 
 bio.display();
 
-
+bio.displayContacts = function() {
+  var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+  var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+  var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+  var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+  var formattedWelcomeMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+  var formattedContacts =
+    formattedTwitter +
+    formattedGithub +
+    formattedLocation;
+  $("#topContacts").append(formattedContacts);
+  $("#footerContacts").append(formattedContacts);
+  $("#header").append(formattedBioPic);
+  $("#header").append(formattedWelcomeMessage);
+}
+bio.displayContacts();
 
 
