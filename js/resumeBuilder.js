@@ -234,3 +234,39 @@ bio.displayContacts = function() {
 bio.displayContacts();
 
 
+education.display = function() {
+  for (school in education.schools) {
+    $("#education").append(HTMLschoolStart);
+    var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+    var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+    var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+    var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+    for (major in education.schools[school].majors) {
+      var formattedMajors = HTMLschoolMajor.replace("%data%", education.schools[school].majors[major]);
+    }
+    var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+    var formattedSchools =
+      formattedSchoolName +
+      formattedDegree +
+      formattedDates +
+      formattedLocation +
+      formattedMajors;
+    $(".education-entry").append(formattedSchools);
+  }
+}
+
+education.display();
+
+
+var HTMLschoolStart = '<div class="education-entry"></div>';
+var HTMLschoolName = '<a href="#">%data%';
+var HTMLschoolDegree = ' -- %data%</a>';
+var HTMLschoolDates = '<div class="date-text">%data%</div>';
+var HTMLschoolLocation = '<div class="location-text">%data%</div>';
+var HTMLschoolMajor = '<em><br>Major: %data%</em>';
+
+var HTMLonlineClasses = '<h3>Online Classes</h3>';
+var HTMLonlineTitle = '<a href="#">%data%';
+var HTMLonlineSchool = ' - %data%</a>';
+var HTMLonlineDates = '<div class="date-text">%data%</div>';
+var HTMLonlineURL = '<br><a href="#">%data%</a>';
