@@ -133,7 +133,7 @@ work.display = function() {
   }
 }
 
-work.display();
+// work.display();
 
 // $(document).click(function(loc) {
 //   var x = loc.pageX;
@@ -198,7 +198,7 @@ projects.display = function() {
   }
 }
 
-projects.display();
+// projects.display();
 
 bio.display = function() {
   if (bio.skills.length > 0) {
@@ -214,7 +214,7 @@ bio.display = function() {
   }
 }
 
-bio.display();
+// bio.display();
 
 bio.displayContacts = function() {
   var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
@@ -231,7 +231,7 @@ bio.displayContacts = function() {
   $("#header").append(formattedBioPic);
   $("#header").append(formattedWelcomeMessage);
 }
-bio.displayContacts();
+// bio.displayContacts();
 
 
 education.display = function() {
@@ -270,11 +270,11 @@ education.display = function() {
   }
 }
 
+// education.display();
+
+
+work.display();
+projects.display();
+bio.displayContacts();
+bio.display();
 education.display();
-
-
-var HTMLonlineClasses = '<h3>Online Classes</h3>';
-var HTMLonlineTitle = '<a href="#">%data%';
-var HTMLonlineSchool = ' - %data%</a>';
-var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
