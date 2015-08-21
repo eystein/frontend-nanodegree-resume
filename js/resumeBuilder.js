@@ -90,9 +90,9 @@ var bio = {
   "role" : "Web developer",
   "contacts" : {
     "mobile" : "+47 406 74 098",
-    "email" : "eystein@eystein.no",
+    "email" : "info@example.no",
     "github" : "eystein",
-    "twitter" : "iceMagic",
+    "twitter" : "@iceMagic",
     "location" : "Chamonix"
   },
   "welcomeMessage" : "Caring about usablity",
@@ -102,6 +102,23 @@ var bio = {
   "bioPic" : "https://pbs.twimg.com/profile_images/1794315645/L1040675_400x400.JPG"
 }
 
+
+bio.display = function() {
+  var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+  var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+  var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+  var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+  var formattedWelcomeMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+  var formattedContacts =
+    formattedTwitter +
+    formattedGithub +
+    formattedLocation;
+  $("#topContacts").append(formattedContacts);
+  $("#footerContacts").append(formattedContacts);
+  $("#header").append(formattedBioPic);
+  $("#header").append(formattedWelcomeMessage);
+}
+bio.display();
 /*
 ## For-In Loops ##
 
@@ -172,6 +189,8 @@ function inName() {
 
 $("#main").prepend(internationalizeButton);
 
+$("#mapDiv").append(googleMap);
+
 /* Encapsulate a function as a method of an object */
 /* Create "display" as a method of the "projects" object */
 projects.display = function() {
@@ -196,8 +215,6 @@ projects.display = function() {
 
 projects.display();
 
-$("#mapDiv").append(googleMap);
-
 bio.display = function() {
   if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
@@ -213,3 +230,7 @@ bio.display = function() {
 }
 
 bio.display();
+
+
+
+
