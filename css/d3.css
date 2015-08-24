@@ -1,8 +1,21 @@
-.chart div {
+/* HTML version */
+
+.chartHTML div {
   font: 10px sans-serif;
   background: steelblue;
   color: white;
   text-align: right;
   padding: 3px;
   margin: 1px;
+}
+
+/* SVG version */
+.chartSVG rect {
+  fill: steelblue;
+}
+
+.chartSVG text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
 }
