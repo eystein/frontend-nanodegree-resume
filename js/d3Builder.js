@@ -131,8 +131,8 @@ function fullChart() {
 
   var yAxis = d3.svg.axis()
       .scale(y)
-      .orient("left");
-
+      .orient("left")
+      .ticks(10, "%");
 
   var chart = d3.select(".chartFull")
       .attr("width", width + margin.right + margin.left)
@@ -140,33 +140,45 @@ function fullChart() {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.tsv("js/data.tsv", type, function(error, data) {
+  d3.tsv("js/data2.tsv", type, function(error, data) {
+    if (error) throw error;
+
     x.domain(data.map(function(d) {
-      return d.name;
+      return d.letter;
     }));
     y.domain([0, d3.max(data, function(d) {
-      return d.value;
+      return d.frequency;
     })]);
 
-    // var barWidth = width / data.length;
+
+    // // var barWidth = width / data.length;
 
     chart.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
+
+
+
     chart.append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
+        .attr("class", "y axis")
+        .call(yAxis)
+      .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Frequency");
 
     chart.selectAll(".bar")
         .data(data)
       .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return x(d.name); })
-        .attr("y", function(d) { return y(d.value); })
-        .attr("height", function(d) { return height - y(d.value); })
-        .attr("width", x.rangeBand());
+        .attr("x", function(d) { return x(d.letter); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return y(d.frequency); })
+        .attr("height", function(d) { return height - y(d.frequency); });
 
 
     // var bar = chart.selectAll("g")
@@ -198,7 +210,7 @@ function fullChart() {
   });
 
   function type(d) {
-    d.value = +d.value;
+    d.frequency = +d.frequency;
     return d;
   }
 }

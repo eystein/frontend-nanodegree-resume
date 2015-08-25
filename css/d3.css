@@ -26,18 +26,31 @@
 }
 
 .chartFull text {
-  fill: white;
+  fill: #000;
   font: 10px sans-serif;
   text-anchor: middle;
 }
 
-.axis path,
-.axis line {
+.chartFull .bar {
+  fill: steelblue;
+}
+
+.chartFull .bar:hover {
+  fill: brown;
+}
+
+.chartFull .axis text {
+  font: 10px sans-serif;
+  color: #000;
+}
+
+.chartFull .axis path,
+.chartFull .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
+.chartFull .x.axis path {
   display: none;
 }
