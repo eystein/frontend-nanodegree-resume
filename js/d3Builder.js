@@ -106,6 +106,13 @@ function SVGcharterize() {
 }
 SVGcharterize();
 
+/*
+*
+* 2. SVG based chart with axes, margins
+*      http://bost.ocks.org/mike/bar/3/
+*
+*/
+
 function fullChart() {
 
   var margin = {top: 20, right: 30, bottom: 30, left: 40 },
@@ -113,10 +120,19 @@ function fullChart() {
       height = 500 - margin.top - margin.bottom;
 
   var x = d3.scale.ordinal()
-          .rangeRoundBands([0, width], .1);
+      .rangeRoundBands([0, width], .1);
 
   var y = d3.scale.linear()
-          .range([height, 0]);
+      .range([height, 0]);
+
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("left");
+
 
   var chart = d3.select(".chartFull")
       .attr("width", width + margin.right + margin.left)
@@ -134,31 +150,50 @@ function fullChart() {
 
     // var barWidth = width / data.length;
 
-    var bar = chart.selectAll("g")
-      .data(data)
-    .enter().append("g")
-      .attr("transform", function(d) {
-        return "translate(" + x(d.name) + ",0)";
-      });
+    chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-    bar.append("rect")
-      .attr("y", function(d) {
-        return y(d.value);
-      })
-      .attr("height", function(d) {
-        return height - y(d.value);
-      })
-      .attr("width", x.rangeBand());
+    chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
 
-    bar.append("text")
-      .attr("x", x.rangeBand() / 2)
-      .attr("y", function(d) {
-        return y(d.value) + 3;
-      })
-      .attr("dy", ".75em")
-      .text(function(d) {
-        return d.value;
-      })
+    chart.selectAll(".bar")
+        .data(data)
+      .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d.name); })
+        .attr("y", function(d) { return y(d.value); })
+        .attr("height", function(d) { return height - y(d.value); })
+        .attr("width", x.rangeBand());
+
+
+    // var bar = chart.selectAll("g")
+    //   .data(data)
+    // .enter().append("g")
+    //   .attr("transform", function(d) {
+    //     return "translate(" + x(d.name) + ",0)";
+    //   });
+
+    // bar.append("rect")
+    //   .attr("y", function(d) {
+    //     return y(d.value);
+    //   })
+    //   .attr("height", function(d) {
+    //     return height - y(d.value);
+    //   })
+    //   .attr("width", x.rangeBand());
+
+    // bar.append("text")
+    //   .attr("x", x.rangeBand() / 2)
+    //   .attr("y", function(d) {
+    //     return y(d.value) + 3;
+    //   })
+    //   .attr("dy", ".75em")
+    //   .text(function(d) {
+    //     return d.value;
+    //   })
 
   });
 

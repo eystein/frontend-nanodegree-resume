@@ -20,13 +20,24 @@
   text-anchor: end;
 }
 
-/* Finished chart */
+/* SVG with axes, margins */
 .chartFull {
-    fill: steelblue;
+  fill: steelblue;
 }
 
 .chartFull text {
-    fill: white;
-    font: 10px sans-serif;
-    text-anchor: middle;
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
 }
