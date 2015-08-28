@@ -278,3 +278,79 @@ projects.display();
 bio.displayContacts();
 bio.display();
 education.display();
+
+/*
+*   Optional extra task: Relationship directions.
+*/
+function getRelationship(x, y) {
+  var xNaN = false,
+   xNum = false,
+   xString = false,
+   xUndefined = false,
+   yNaN = false,
+   yNum = false,
+   yString = false,
+   yUndefined = false;
+
+  if (typeof x === "number") {
+    // x is a number
+    if (isNaN(x)) {
+      // x is NaN (But still typeof number!)
+      xNaN = true;
+    } else {
+      xNum = x;
+    }
+  } else if (typeof x === "string") {
+    // x is a string
+    xString = true;
+  }  else if (typeof x === "undefined") {
+    // x is undefined
+    xUndefined = true;
+  }
+
+  if (typeof y === "number") {
+    // y is a number
+    if (isNaN(y)) {
+    // y is NaN (But still typeof number!)
+      yNaN = true;
+    } else {
+      yNum = y;
+    }
+  } else if (typeof y === "string") {
+    // y is a string
+    yString = true;
+  }  else if (typeof y === "undefined") {
+    // y is undefined
+    yUndefined = true;
+  }
+
+  // Compare size of xNum and yNum
+  if (xNum > yNum) {
+    return console.log(xNum + " > " + yNum);
+  } else if (xNum < yNum) {
+    return console.log(xNum + " < " + yNum);
+  } else if (xNum === yNum) {
+    return console.log(xNum + " === " + yNum);
+  } else if (xNan == true) {
+    return console.log("Can't compare relationships because " + xNan + " is not a number.");
+  } else if (xString == true) {
+    return console.log("Can't compare relationships because " + xString + " is a string.");
+  } else if (xUndefined == true) {
+    return console.log("Can't compare relationships because " + xUndefined + " is undefined.");
+  }
+
+};
+
+// "Can't compare relationships because [this value] and [that value] [is]/[are] not [a] number[s]."
+// "Can't compare relationships because this is not a number"
+// "Can't compare relationships because that and undefined are not numbers"
+
+// Try logging these functions to test your code!
+console.log(getRelationship(1,4));
+console.log(getRelationship(1,1));
+console.log(getRelationship("that",2));
+console.log(getRelationship("this"," something else"));
+console.log(getRelationship(3));
+console.log(getRelationship("hi"));
+console.log(getRelationship(NaN));
+console.log(getRelationship(NaN, undefined));
