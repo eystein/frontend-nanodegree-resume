@@ -282,7 +282,7 @@ education.display();
 /*
 *   Optional extra task: Relationship directions.
 */
-function getRelationship(x, y) {
+function getRelationship01(x, y) {
   var xNaN = false,
    xNum = false,
    xString = false,
@@ -341,16 +341,51 @@ function getRelationship(x, y) {
 
 };
 
+
+function evaluateNumbers(x,y) {
+  if (x > y) {
+    return console.log(x + " > " + y);
+  } else if (x < y) {
+    return console.log(x + " < " + y);
+  } else if (x === y) {
+    return console.log(x + " === " + y);
+  }
+}
+
+function getRelationship(x,y) {
+  // Check that both x and y are numbers
+  if (!isNaN(x) && !isNaN(y)) {
+    // return console.log(x + " is a number, and so is " + y);
+    evaluateNumbers(x,y);
+  } else if (isNaN(x) && !isNaN(y)) {
+    return console.log("Can't compare relationships because \"" + x + "\" is not a number.");
+  } else if (!isNaN(x) && isNaN(y)) {
+    return console.log("Can't compare relationships because \"" + y + "\" is not a number.");
+  } else if (isNaN(x) && isNaN(y) ) {
+    return console.log("Can't compare relationships because \"" + x + "\" and \"" + y + "\" are not numbers.");
+  }
+}
+
+
 // "Can't compare relationships because [this value] and [that value] [is]/[are] not [a] number[s]."
 // "Can't compare relationships because this is not a number"
 // "Can't compare relationships because that and undefined are not numbers"
 
 // Try logging these functions to test your code!
-console.log(getRelationship(1,4));
-console.log(getRelationship(1,1));
-console.log(getRelationship("that",2));
-console.log(getRelationship("this"," something else"));
-console.log(getRelationship(3));
-console.log(getRelationship("hi"));
-console.log(getRelationship(NaN));
-console.log(getRelationship(NaN, undefined));
+// console.log(getRelationship(1,4));
+// console.log(getRelationship(1,1));
+// console.log(getRelationship("that",2));
+// console.log(getRelationship("this"," something else"));
+// console.log(getRelationship(3));
+// console.log(getRelationship("hi"));
+// console.log(getRelationship(NaN));
+// console.log(getRelationship(NaN, undefined));
+
+getRelationship(1,4);
+getRelationship(1,1);
+getRelationship("that",2);
+getRelationship("this"," something else");
+getRelationship(3);
+getRelationship("hi");
+getRelationship(NaN);
+getRelationship(NaN, undefined);
